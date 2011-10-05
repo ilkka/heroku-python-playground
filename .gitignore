@@ -1,4 +1,6 @@
-/.Python
+.Python
+/build
 /bin
 /include
 /lib
+*.pyc

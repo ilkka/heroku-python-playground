@@ -27,13 +27,10 @@ app.config.from_envvar('CONFIG_FILE', silent=True)
 def connect_db():
     """Return a database connection object."""
     u = app.config['DATABASE_URL']
-    return psycopg2.connect(
-            host=u.hostname,
-            port=u.port,
-            database=u.path[1:],
-            user=u.username,
-            password=u.password
-            )
+    dbstring = 'host={} user={} password={} dbname={}'.format(
+            u.hostname, u.username, u.password, u.path[1:])
+    dbstring += ' port={}'.format(u.port) if u.port
+    return psycopg2.connect(dbstring)
 
 
 def init_db():

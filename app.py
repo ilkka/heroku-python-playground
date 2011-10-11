@@ -29,7 +29,7 @@ def connect_db():
     u = app.config['DATABASE_URL']
     dbstring = 'host={} user={} password={} dbname={}'.format(
             u.hostname, u.username, u.password, u.path[1:])
-    dbstring += ' port={}'.format(u.port) if u.port
+    dbstring += ' port={}'.format(u.port) if u.port else ''
     return psycopg2.connect(dbstring)
 
 

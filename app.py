@@ -19,6 +19,17 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('CONFIG_FILE', silent=True)
 
+def connect_db():
+    """Return a database connection object."""
+    u = app.config['DATABASE_URL']
+    return psycopg2.connect(
+            host=u.hostname,
+            port=u.port,
+            database=u.path[1:],
+            user=u.username,
+            password=u.password
+            )
+
 @app.route("/")
 def hello():
     return "DATABASE_URL is {}".format(app.config['DATABASE_URL'])

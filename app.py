@@ -46,7 +46,7 @@ def init_db():
 
 @app.route("/")
 def hello():
-    return "DATABASE_URL is {}".format(app.config['DATABASE_URL'])
+    return "Hello world"
 
 
 if __name__ == "__main__":
